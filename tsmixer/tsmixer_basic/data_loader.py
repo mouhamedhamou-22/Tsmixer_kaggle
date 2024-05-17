@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import tensorflow as tf
-from google.colab import drive
+# from google.colab import drive
 
 
 
