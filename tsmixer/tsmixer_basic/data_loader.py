@@ -49,7 +49,7 @@ class TSFDataLoader:
     # drive.mount('/content/drive')
 
     # Load data from Google Drive
-    file_path = os.path.join('/kaggle/input/datasets-electricity/ETTH/', self.data_file_path + '.csv')
+    file_path = os.path.join('/kaggle/input/electricity-datasets/ETTH/', self.data_file_path + '.csv')
     df_raw = pd.read_csv(file_path)
 
     # S: univariate-univariate, M: multivariate-multivariate, MS:
