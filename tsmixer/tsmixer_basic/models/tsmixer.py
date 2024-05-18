@@ -276,9 +276,7 @@ def res_block(inputs, norm_type, activation, dropout, ff_dim):
 
   # Feature Linear
   x = norm(axis=[-2, -1])(res)
-  x = layers.Dense(ff_dim, activation=activation)(
-      x
-  )  # [Batch, Input Length, FF_Dim]
+  x = layers.Dense(ff_dim, activation=activation)(x)  # [Batch, Input Length, FF_Dim]
   x = layers.Dropout(dropout)(x)
   x = layers.Dense(inputs.shape[-1])(x)  # [Batch, Input Length, Channel]
   x = layers.Dropout(dropout)(x)
