@@ -46,7 +46,7 @@ class TSFDataLoader:
     
     
 # Mount Google Drive
-    drive.mount('/content/drive')
+    # drive.mount('/content/drive')
 
     # Load data from Google Drive
     file_path = os.path.join('/kaggle/input/datasets-electricity/ETTH/', self.data_file_path + '.csv')
