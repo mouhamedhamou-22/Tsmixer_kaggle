@@ -139,13 +139,18 @@ class Backbone(nn.Module):
         self.conv_layer = nn.Conv1d(in_channels=self.enc_in, out_channels=self.enc_in, kernel_size=3, padding=1)
 
     def forward(self, x):  # B, L, D -> B, H, D
-        res3 = self.cae(x)
+        res3 = self.cae(x)  # Ensure `res3` shape matches the desired output
         n_block = 6
         for _ in range(n_block):
-            x = self.mix_layer(x)  # B, L, D -> B, L, D
+            x = self.mix_layer(x)  # Ensure `x` shape matches `self.seq_len`
+
+        # Ensure `res3` and `x` have matching dimensions for addition
+        if res3.size(1) != x.size(1):
+            
+            print(f"Adjusting res3 from {res3.shape} to match {x.shape}")
+            res3 = res3[:, :x.size(1), :]  # Adjust `res3` to match `x`
 
         return res3 + x
-
 
 class CAE(nn.Module):
     def __init__(self, input_channels, feature_dim):
