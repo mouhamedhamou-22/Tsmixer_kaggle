@@ -147,7 +147,7 @@ class Backbone(nn.Module):
         # Ensure `res3` and `x` have matching dimensions for addition
         if res3.size(1) != x.size(1):
             
-            print(f"Adjusting res3 from {res3.shape} to match {x.shape}")
+            # print(f"Adjusting res3 from {res3.shape} to match {x.shape}")
             res3 = res3[:, :x.size(1), :]  # Adjust `res3` to match `x`
 
         return res3 + x
