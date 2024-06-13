@@ -152,6 +152,8 @@ class Backbone(nn.Module):
 
         return res3 + x
 
+import torch.nn as nn
+
 class CAE(nn.Module):
     def __init__(self, input_channels, feature_dim):
         super(CAE, self).__init__()
@@ -175,9 +177,13 @@ class CAE(nn.Module):
         )
 
     def forward(self, x):
+        # Reshape x to match the expected input shape [batch_size, input_channels, seq_len]
+        x = x.permute(0, 2, 1)  # Change shape from [batch_size, seq_len, num_channels] to [batch_size, num_channels, seq_len]
         z = self.encoder(x)
         x_reconstructed = self.decoder(z)
+        x_reconstructed = x_reconstructed.permute(0, 2, 1)  # Change shape back to [batch_size, seq_len, num_channels]
         return x_reconstructed
+
 
 
 class Model(nn.Module):
