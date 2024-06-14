@@ -140,7 +140,7 @@ class Backbone(nn.Module):
 
     def forward(self, x):  # B, L, D -> B, H, D
         res3 = self.cae(x)  # Ensure `res3` shape matches the desired output
-        n_block = 6
+        n_block = 4
         for _ in range(n_block):
             x = self.mix_layer(x)  # Ensure `x` shape matches `self.seq_len`
 
